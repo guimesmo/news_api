@@ -1,0 +1,16 @@
+<html>
+    <head><title>Portal de notícias - {{ category.name }}</title></head>
+    <body>
+        <p>
+            <a href="../">Home</a>
+        </p>
+        <h1>Notícias de {{ category.name }}</h1>
+        <ul>
+        {% for news_detail in news %}
+        <li><a href="{{ news_detail.get_absolute_url }}">{{ news_detail.title }}</a></li>
+        {% empty %}
+        <li>Nenhuma noticia para exibir</li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

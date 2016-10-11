@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content%}
+		<p>
+			<a href="../../">Home</a> > <a href="../">{{ new.category.name }}</a>
+		</p>
+		<h1>{{ new.title }}</h1>
+		<p>
+		{{ new.text | linebreaksbr }}
+		</p>
+		<hr />
+		<h3>Comentários:</h3>
+		<form action="." method="post">
+		{% csrf_token %}
+		{{ comments_form.non_field_errors }}
+		{{ comments_form.as_p }}
+		<button type=submit>Enviar</button>
+		</form>	
+		{% if comments %}
+		<ul>
+			{% for comment in comments %}
+			<li>
+				<strong>{{ comment.author }}</strong> - {{ comment.author }} em
+				{{ comment.comment_datetime }}<br />
+				{{ comment.comment | linebreaksbr }}
+				<br />
+				___________________________________________
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>Nenhum comentário</p>
+		{% endif %}
+{% endblock %}
