@@ -11,6 +11,7 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ('creation_date', 'title',)
     inlines = [CommentInline,]
 
+
 # Register your models here.
 admin.site.register(News, NewsAdmin)
 admin.site.register(Category)

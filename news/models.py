@@ -28,14 +28,11 @@ class Category(models.Model):
 
 
 class News(models.Model):
-    author = models.ForeignKey(User, editable=False, default=1)
     category = models.ForeignKey(Category)
     creation_date = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, help_text="Um título para noticia")
     slug = models.SlugField(max_length=100, unique=True, editable=False)
     text = models.TextField(help_text="Inclua um texto simples, sem tags")
-    thumbnail = models.ImageField(blank=True, null=True)
-    page_views = models.PositiveIntegerField(default=0)
     public = models.BooleanField(default=True)
 
     objects = NewsManager()
@@ -80,5 +77,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return "%s de %s" % (self.title, self.author)
-
 
