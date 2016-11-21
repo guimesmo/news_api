@@ -11,6 +11,7 @@ def index(request):
     categories = Category.objects.all()
     return render(request, 'index.html', {'categories': categories})
 
+
 def category_detail(request, slug):
     try:
         category = Category.objects.get(slug=slug)
@@ -18,6 +19,7 @@ def category_detail(request, slug):
         raise Http404
     news = News.objects.public(category=category)
     return render(request, 'category.html', {'category': category, 'news': news})
+
 
 def news_detail(request, category_slug, slug):
     new = get_object_or_404(News, category__slug=category_slug, slug=slug)

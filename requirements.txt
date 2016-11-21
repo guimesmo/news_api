@@ -1,0 +1,7 @@
+# project requirements
+django
+djangorestframework
+
+# debug apps
+ipython
+ipdb
