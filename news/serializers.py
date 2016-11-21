@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import News
+from .models import News, Category
 
 
 class NewsSerializer(serializers.Serializer):
@@ -30,5 +30,13 @@ class NewsModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        fields = ('category', 'name', 'creation_date', 'title', 'text',)
-        read_only_fields = ('creation_date')
+        fields = ('title', 'creation_date', 'title', 'text', 'url',)
+        read_only_fields = ('creation_date', 'url',)
+
+
+class CategoryModelSerializer(serializers.ModelSerializer):
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
+
+    class Meta:
+        model = Category
+        fields = ('name', 'url',)
